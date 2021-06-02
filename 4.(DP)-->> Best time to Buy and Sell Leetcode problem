@@ -1,0 +1,21 @@
+// not a perfect solution only 201/211 test cases passed rest TLE
+
+
+
+class Solution {
+    public int maxProfit(int[] prices) {
+        
+        int maxcost = 0;
+        for (int i=0;i<prices.length;i++){
+            for(int j=i+1;j<prices.length;j++){
+                int cost = prices[j] - prices[i];
+                
+                if(cost>maxcost){
+                    maxcost = cost;
+                }
+            }
+        }
+        
+        return maxcost;
+    }
+}

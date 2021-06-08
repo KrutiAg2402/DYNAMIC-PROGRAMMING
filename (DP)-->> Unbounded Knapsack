@@ -1,0 +1,45 @@
+	import java.io.*;
+	import java.util.*;
+
+	public class Main {
+
+	    public static void main(String[] args) throws Exception {
+	        Scanner sc  = new Scanner(System.in);
+	        
+	        int n = sc.nextInt();
+	        int[] vals = new int[n];
+	        for(int i =0;i<n;i++){
+	            vals[i] = sc.nextInt();
+	        }
+	        int[] wts = new int[n];
+	        for(int i = 0 ; i<n;i++){
+	            wts[i]= sc.nextInt();
+	        }
+	        int caps = sc.nextInt();
+	        
+// main UNbounded knapsack code starts from here
+
+	        int[] dp = new int[caps+1];
+	        dp[0] = 0;
+	        for(int bg=1;bg<=caps;bg++){
+
+	        	    int max = 0;
+
+	            for(int i = 0;i<n;i++){
+	            
+	                if(wts[i]<=bg){
+	                	int rbg = bg -wts[i];				// bag capacity will decrease
+	                	int rbgv = dp[rbg];					// rbgv remaining bag value
+	                	int tbgv = rbgv + vals[i];	
+	                	 		// tbgv total bag value;
+	                    if (tbgv > max){
+	                		 	max = tbgv;
+	                		 }
+	                }
+	            }
+
+	            dp[bg] = max;
+	        }
+	        	System.out.println(dp[caps]);
+	    }
+	}

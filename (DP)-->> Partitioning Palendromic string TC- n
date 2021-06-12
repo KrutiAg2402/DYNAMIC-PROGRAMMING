@@ -1,0 +1,60 @@
+// Pallendromic Partioning with Time Complexity o(n)
+
+
+
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+	public static int minPalindromicCut(String s) {
+	
+    boolean dp[][] = new boolean [s.length()][s.length()];
+    for(int g=0;g<s.length();g++){
+        for(int i=0,j=g;j<dp.length;j++,i++){
+            if(g==0){
+                dp[i][j]=true;         }
+            else if(g==1){
+                dp[i][j] = s.charAt(i)==s.charAt(j);
+            }
+            else{
+                if(s.charAt(i)==s.charAt(j) && dp[i+1][j-1]==true){
+                    dp[i][j] = true;
+                    
+                }
+                else{
+                    dp[i][j] =false;
+                }}}}
+                
+                
+    
+    int[] cut = new int[s.length()];
+    
+    cut[0] = 0;
+    for(int j=1;j < s.length();j++){
+        if(dp[0][j]){       // if the whole string is palendromic than cuts required is 0
+            cut[j]=0;
+        }else{
+        int min = Integer.MAX_VALUE;
+        
+        for(int i=j;i>=1;i--){
+            if(dp[i][j]){
+                if(cut[i-1] < min){
+                    min = cut[i-1];
+                }
+            }
+        }
+        cut[j] = min+1;
+    }}
+    return cut[cut.length-1];}
+
+
+
+	public static void main(String[] args) {
+		Scanner scn = new Scanner(System.in);
+		String str = scn.nextLine();
+		System.out.println(minPalindromicCut(str));
+	}
+}

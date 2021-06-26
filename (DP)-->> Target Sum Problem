@@ -1,3 +1,5 @@
+// also known as subset sum problem
+
 
 package dynamicprograming;
 import java.util.*;
@@ -33,6 +35,51 @@ public class DYNAMICPROGRAMING {
         }
         return mat[arr.length-1][sum];
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <-----------------------------------------------------------********************----------------------------------------------->
+    
+    Recursive solution for target sum problem
+    
+    
+package dynamicprograming;
+import java.util.*;
+public class DYNAMICPROGRAMING {
+ 
+ public static boolean subsetsum(int[] set, int sum,int n){
+     
+    if(n==0 ){
+        return false;
+    }
+    if(sum==0){
+        return true;
+    }
+     if(set[n-1]>sum){
+        return subsetsum(set,sum,n-1);
+     }
+     
+     return subsetsum(set,sum-set[n-1],n-1) || subsetsum(set,sum,n-1) ;
+ }
+    
+public static void main(String[]args){
+int set[] = {3, 34, 4, 12, 5, 2};
+int sum = 9;
+int n = set.length;
+System.out.print(subsetsum(set,sum,n));
+    }
+    
+}
+
     
 public static void main(String[]args){
    Scanner sc = new Scanner(System.in);
